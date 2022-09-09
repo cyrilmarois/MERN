@@ -24,8 +24,6 @@ services:
     restart: always
     ports:
       - 666:666
-    #expose:
-    #  - 666
     volumes:
       - ./backend:/usr/src/app
       - /usr/src/app/node_modules
@@ -42,16 +40,17 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: password
-      MONGO_INITDB_DATABASE: portfolio
+      MONGO_INITDB_DATABASE: dev
+    ports:
+      - 27017:27017
     volumes:
       - ./data:/data/db
-      #- /data/configdb
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     networks:
       - mern-express-mongo
-    expose:
-      - 27017
 
   mongo-express:
+    container_name: mongo-express
     image: mongo-express:0.54
     restart: always
     ports:
