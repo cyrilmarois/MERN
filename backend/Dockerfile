@@ -14,7 +14,7 @@ RUN npm install
 ## Copy local dependency files to app
 COPY . /usr/src/app
 
-EXPOSE 666
+EXPOSE 6969
 
 USER node
 

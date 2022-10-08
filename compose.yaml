@@ -22,8 +22,10 @@ services:
     build:
       context: ./backend
       target: development
+    environment:
+      - PORT=6969
     ports:
-      - 666:666
+      - 6969:6969
     volumes:
       - ./backend:/usr/src/app
       - /usr/src/app/node_modules
@@ -41,8 +43,8 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: password
       MONGO_INITDB_DATABASE: dev
-    ports:
-      - 27017:27017
+    expose:
+      - 27017
     volumes:
       - ./data:/data/db
       - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
