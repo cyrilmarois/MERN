@@ -1,6 +1,6 @@
 services:
   frontend:
-    container_name: frontend
+    container_name: mern-frontend
     build:
       context: ./frontend
       target: development
@@ -17,11 +17,11 @@ services:
       - backend
 
   backend:
-    container_name: backend
+    container_name: mern-backend
+    restart: always
     build:
       context: ./backend
       target: development
-    restart: always
     ports:
       - 666:666
     volumes:
@@ -34,7 +34,7 @@ services:
       - mongo
 
   mongo:
-    container_name: mongo
+    container_name: mern-mongo
     image: mongo:4.2.0
     restart: always
     environment:
@@ -50,7 +50,7 @@ services:
       - mern-express-mongo
 
   mongo-express:
-    container_name: mongo-express
+    container_name: mern-mongo-express
     image: mongo-express:0.54
     restart: always
     ports:
