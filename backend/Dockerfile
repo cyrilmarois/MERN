@@ -5,14 +5,17 @@ FROM node:16.17-alpine as development
 WORKDIR /usr/src/app
 
 # Copy package and package-lock
-COPY package*.json ./
+COPY package.json /usr/src/app/package.json
+COPY package-lock.json /usrc/src/app/package-lock.json
 
 # Installing dependencies
 RUN npm install
 
 ## Copy local dependency files to app
-COPY . .
+COPY . /usr/src/app
 
 EXPOSE 666
 
-CMD ["npm", "start"]
+USER node
+
+CMD ["npm", "run", "dev"]
