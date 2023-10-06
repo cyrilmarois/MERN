@@ -70,6 +70,13 @@ services:
     depends_on:
       - mongo
 
+  truffle:
+    container_name: mern-truffle
+    image: trufflesuite/ganache-cli:6.12.2
+    ports:
+      - 8545:8545
+    volumes:
+      - ./truffle:/app
 networks:
   mern-react-express:
   mern-express-mongo:
